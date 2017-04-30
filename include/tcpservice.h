@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdio>
+#include <string>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/noncopyable.hpp>
@@ -16,11 +17,13 @@ public:
 	typedef boost::system::error_code error_code;
 
 	void start();
-	static ptr new_();
 	void stop();
-	ip::tcp::socket& sock();
 	void on_read(const error_code& err, size_t bytes);
 	void on_write(const error_code& err, size_t bytes);
+	void do_read();
+	void do_write(const std::string& msg);
+	ip::tcp::socket& sock();
+	static ptr new_();
 
 private:
 	ip::tcp::socket sock_;
