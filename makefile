@@ -12,9 +12,7 @@ BIN_TARGET = ${DIR_BIN}/${TARGET}
 
 CC = g++
 
-LIBS = boost_system
-
-LFLAGS = -l${LIBS}
+LFLAGS = -lboost_system -lboost_serialization
 
 CFLAGS = -g -std=c++11 -Wall -I${DIR_INC}
 
