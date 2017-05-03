@@ -1,5 +1,9 @@
 #ifndef H_BACKENDDEFINE_H
 #define H_BACKENDDEFINE_H
 
+#define MSG_TYPE_SERVER 1
+#define MSG_TYPE_CLIENT 2
+#define MSG_COMMAND_ONE 101
+#define MSG_COMMAND_TWO 102
 
-#endif
+endif

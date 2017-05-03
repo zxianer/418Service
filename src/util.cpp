@@ -39,9 +39,9 @@ namespace Util
 				boost::archive::xml_iarchive ia(is);
 				ia & BOOST_SERIALIZATION_NVP(pdata);
 				datalist.push_back(pdata);
-				bRet = true;
 				previndex = index;
 				nextindex = previndex + flag.size();
+				bRet = true;
 			}
 		}
 		return bRet;

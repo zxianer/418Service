@@ -1,5 +1,6 @@
 #ifndef H_TCP_CONNECTION_H
 #define H_TCP_CONNECTION_H
+
 #include <iostream>
 #include <cstdio>
 #include <string>
@@ -25,12 +26,13 @@ public:
 	void do_read();
 	void do_write(const std::string& msg);
 	bool started();
+	void process_message(const std::string& msg);
 	ip::tcp::socket& sock();
 	static ptr new_();
 
 private:
 	ip::tcp::socket sock_;
-	enum { max_msg = 1024 };
+	enum { max_msg = 65536 };
 	char read_buffer_[max_msg];
 	char write_buffer_[max_msg];
 	bool started_;	

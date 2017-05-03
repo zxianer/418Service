@@ -3,6 +3,8 @@
 #include <boost/bind.hpp>
 #include "tcpconnection.h"
 #include "packagedata.h"
+#include "util.h"
+#include "backenddefine.h"
 using namespace boost::asio;
 
 extern io_service service;
@@ -20,8 +22,6 @@ void tcpconnection::start()
 
 tcpconnection::ptr tcpconnection::new_()
 {
-	ptr new_(new tcpconnection);
-	return new_;
 }
 
 void tcpconnection::stop()
@@ -46,7 +46,7 @@ void tcpconnection::on_read(const error_code& err, size_t bytes)
 {
 	if ( !started() ) return;
 	std::string msg(read_buffer_, bytes);
-	do_write("receive data ok");
+	process_message(msg);
 }
 
 void tcpconnection::on_write(const error_code& err, size_t bytes)
@@ -63,5 +63,24 @@ void tcpconnection::do_write(const std::string& msg)
 {
 	if ( !started() ) return;
 	std::copy( msg.begin(), msg.end(), write_buffer_ );
-	sock_.async_write_some(buffer(write_buffer_, msg.size()), boost::bind(&tcpconnection::on_write, shared_from_this(), _1, _2));
+	sock_.async_write_some(buffer(write_buffer_, msg.size()), 
+			boost::bind(&tcpconnection::on_write, shared_from_this(), _1, _2));
+}
+
+void tcpconnection::process_message(const std::string& msg)
+{
+	std::vector<packagedata> datalist;
+	Util::param_stream_data(msg, datalist);
+	for( uint64_t i = 0; i < datalist.size(); i++ )
+	{
+		uint64_t type = datalist[i].type();
+		switch(type)
+		{
+			case MSG_TYPE_CLIENT:
+
+				break;
+			default:
+				break;
+		}
+	}
 }

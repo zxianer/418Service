@@ -2,7 +2,13 @@
 #include <boost/archive/xml_iarchive.hpp>
 #include <boost/archive/xml_oarchive.hpp>
 
-packagedata::packagedata():length_(0), type_(0), command_(0), subcommand_(0), version_("1.0.0.0"), data_("")
+packagedata::packagedata():
+	length_(0), 
+	type_(0), 
+	command_(0), 
+	subcommand_(0), 
+	version_("1.0.0.0"), 
+	data_("")
 {
 
 }

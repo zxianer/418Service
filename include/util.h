@@ -1,5 +1,6 @@
 #ifndef H_UTIL_H
 #define H_UTIL_H
+
 #include <iostream>
 #include <string>
 #include <sstream>
