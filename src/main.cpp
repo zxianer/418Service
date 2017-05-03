@@ -5,8 +5,10 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/bind.hpp>
 #include <boost/asio.hpp>
+#include <inttypes.h>
 #include "tcpconnection.h"
 #include "packagedata.h"
+#include "util.h"
 
 using namespace boost::asio;
 
@@ -30,11 +32,18 @@ int main()
 	service.run();
 	*/
 	packagedata pd;
+	pd.setlength(8);
 	std::ostringstream os;
 	boost::archive::xml_oarchive oa(os);
 	oa & BOOST_SERIALIZATION_NVP(pd);
 	std::string content = os.str();
-	std::cout << content << std::endl;
-	getchar();
+
+	std::vector<packagedata> pdlist;
+	Util::param_stream_data(content, pdlist);	
+	for ( int i = 0; i < pdlist.size(); i++ )
+	{
+		std::cout<< pdlist[i].version() << " " << pdlist[i].type() << " " << pdlist[i].length() << std::endl;
+	}
+
 	return 0;
 }

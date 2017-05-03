@@ -1,3 +1,5 @@
+#ifndef H_TCP_CONNECTION_H
+#define H_TCP_CONNECTION_H
 #include <iostream>
 #include <cstdio>
 #include <string>
@@ -34,3 +36,4 @@ private:
 	bool started_;	
 };
 
+#endif
