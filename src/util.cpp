@@ -40,6 +40,8 @@ namespace Util
 				ia & BOOST_SERIALIZATION_NVP(pdata);
 				datalist.push_back(pdata);
 				bRet = true;
+				previndex = index;
+				nextindex = previndex + flag.size();
 			}
 		}
 		return bRet;

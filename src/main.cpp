@@ -38,6 +38,15 @@ int main()
 	oa & BOOST_SERIALIZATION_NVP(pd);
 	std::string content = os.str();
 
+
+	packagedata pd1;
+	pd1.setlength(12);
+	std::ostringstream os1;
+	boost::archive::xml_oarchive oa1(os1);
+	oa1 & BOOST_SERIALIZATION_NVP(pd1);
+	std::string content1 = os1.str();
+
+	content += content1;
 	std::vector<packagedata> pdlist;
 	Util::param_stream_data(content, pdlist);	
 	for ( int i = 0; i < pdlist.size(); i++ )
