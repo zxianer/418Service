@@ -14,7 +14,7 @@ CC = g++
 
 LFLAGS = -lboost_system -lboost_serialization
 
-CFLAGS = -g -std=c++11 -Wall -I${DIR_INC}
+CFLAGS = -g -std=c++11 -Wall -Wno-unused-variable -I${DIR_INC}
 
 ${BIN_TARGET}: ${OBJ}
 	${CC} ${OBJ} -o ${BIN_TARGET} ${LFLAGS}

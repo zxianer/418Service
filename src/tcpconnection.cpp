@@ -22,6 +22,8 @@ void tcpconnection::start()
 
 tcpconnection::ptr tcpconnection::new_()
 {
+	ptr new_(new tcpconnection);
+	return new_;
 }
 
 void tcpconnection::stop()
