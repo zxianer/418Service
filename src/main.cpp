@@ -11,6 +11,7 @@
 #include "tcpconnection.h"
 #include "easylogging++.h"
 #include "backenddefine.h"
+#include "network_event_listener.h"
 
 using namespace boost::asio;
 
