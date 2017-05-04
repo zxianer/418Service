@@ -3,6 +3,8 @@ DIR_SRC = ./src
 DIR_OBJ = ./obj
 DIR_BIN = ./bin
 
+DIRS := ${DIR_OBJ} ${DIR_BIN}
+
 SRC = ${wildcard ${DIR_SRC}/*.cpp}
 OBJ = ${patsubst %.cpp,${DIR_OBJ}/%.o,${notdir ${SRC}}}
 
@@ -11,6 +13,7 @@ TARGET = main
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
 CC = g++
+MKDIR = mkdir
 
 LFLAGS = -lboost_system -lboost_serialization
 
@@ -22,6 +25,13 @@ ${BIN_TARGET}: ${OBJ}
 ${DIR_OBJ}/%.o: ${DIR_SRC}/%.cpp
 	${CC} ${CFLAGS} -c $< -o $@
 
-.PHONY:clean
+.PHONY:clean init uinit
 clean:
 	rm ${DIR_OBJ}/*.o ${DIR_BIN}/*
+
+init: ${DIRS}
+${DIRS}: 
+	${MKDIR} $@
+
+uinit:
+	rm -rf ${DIR_OBJ} ${DIR_BIN}
