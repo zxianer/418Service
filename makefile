@@ -10,6 +10,8 @@ OBJ = ${patsubst %.cpp,${DIR_OBJ}/%.o,${notdir ${SRC}}}
 
 TARGET = main
 
+F = need_to_rename
+
 BIN_TARGET = ${DIR_BIN}/${TARGET}
 
 CC = g++
@@ -25,9 +27,12 @@ ${BIN_TARGET}: ${OBJ}
 ${DIR_OBJ}/%.o: ${DIR_SRC}/%.cpp
 	${CC} ${CFLAGS} -c $< -o $@
 
-.PHONY:clean init uinit
+.PHONY:clean init uinit add
 clean:
 	rm ${DIR_OBJ}/*.o ${DIR_BIN}/*
+
+add:
+	touch ${DIR_INC}/${F}.h ${DIR_SRC}/${F}.cpp
 
 init: ${DIRS}
 ${DIRS}: 
